@@ -30,7 +30,7 @@ test("Can get name via getName()", () => {
 });
 
 test("Can get id via getId()", () => {
-  const testValue = 100;
+  const testValue = "100";
   const e = new Employee("Foo", testValue);
   expect(e.getId()).toBe(testValue);
 });
@@ -43,6 +43,6 @@ test("Can get email via getEmail()", () => {
 
 test("getRole() should return \"Employee\"", () => {
   const testValue = "Employee";
-  const e = new Employee("Alice", 1, "test@test.com");
+  const e = new Employee("Alice", 1, "test@test.com", testValue);
   expect(e.getRole()).toBe(testValue);
 });
