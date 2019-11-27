@@ -1,13 +1,13 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
-const generateHTML = require("./generateHTML");
+const generateHTML = require("./lib/generateHTML");
 const writeFileAsync = util.promisify(fs.writeFile);
 // const pdf = require('html-pdf');
 
-const Manager = require("./Manager");
-const Engineer = require("./Engineer");
-const Intern = require("./Intern");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 
 //-------------------------------------------------------------------
 
@@ -82,11 +82,11 @@ const quesIntern = [
     message: "What is your ID?",
     name: "id"
   },
-  {
-    type: "input",
-    message: "What is your role?",
-    name: "role"
-  },
+  // {
+  //   type: "input",
+  //   message: "What is your role?",
+  //   name: "role"
+  // },
   {
     type: "input",
     message: "What is your Email?",
@@ -185,48 +185,41 @@ function promptManager() {
 
   // ------------------------------------------------
 // [manager{},engineer{},intern{}]
-let html = `<!DOCTYPE html>
+let html = `
+      <!DOCTYPE html>
       <html lang="en">
-         <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
-            <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-            <title>Document</title>
-            <style>
-      
-               
-            </style>
-            
-          <body>
-      
-          <div class="wrapper">
-      
-      
-              <div class="teamInformation">
-                      <h4 class="header">Team</h4>
-      
-                      <div class= "teamUl">
-                          <ul id="teamView">
-                              <li class= "teamLi"></li>
-                          </ul>
-                      </div>
-                  </div> 
-      
-      
-                 <div class="header">
-                  <h2>My Team</h2>          
-                  
-    
-      
-              <div class="main">`;
+      <head>
+      <meta charset="UTF-8">
+      <title>Team</title>
+      <!-- Latest compiled and minified CSS & JS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://kit.fontawesome.com/4d07055d3e.js" crossorigin=“anonymous”></script>
+      <style>
+          .shadow {
+              box-shadow: 5px 5px 5px grey;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="container-fluid p-0 mb-0">
+          <div class="jumbotron jumbotron-fluid bg-danger text-light">
+              <div class="container text-center">
+                  <h1 class="display-4">My Team</h1>
+              </div>
+          </div>
+          <div class="container">
+              <div class="row justify-content-center" id="cards">
+  `;
 
 
-  let close = `</div> 
-              </body>
-            </html>;`
+  let close = `
+        </div> 
+        </div> 
+      </body>
+    </html>;`
 
   function getHtmlTeam() {
   
@@ -236,7 +229,7 @@ let html = `<!DOCTYPE html>
     } 
     html += close; 
 
-    writeFileAsync("team.html", html);
+    writeFileAsync("./output/team.html", html);
     
   };
 
