@@ -79,7 +79,7 @@ const quesIntern = [
   },
   {
     type: "input",
-    message: "What is your ID?",
+    message: "What is intern's ID?",
     name: "id"
   },
   // {
@@ -89,12 +89,12 @@ const quesIntern = [
   // },
   {
     type: "input",
-    message: "What is your Email?",
+    message: "What is intern's Email?",
     name: "email"
   },
   {
     type: "input",
-    message: "What is your school?",
+    message: "What is intern's school?",
     name: "school"
   }
 ];
